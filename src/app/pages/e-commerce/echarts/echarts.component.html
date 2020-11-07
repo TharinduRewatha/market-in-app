@@ -1,0 +1,32 @@
+    <nb-flip-card>
+      <nb-card-front>
+        <nb-card status="success">
+          <nb-card-header>Revenve
+          <nb-select  (selectedChange)="setCategory('111')" size="large" class="float-right" placeholder="elect ShowcaseS" shape="round" [(selected)]="selectedItem">
+            <nb-option value="0">Branch</nb-option>
+            <nb-option value="1">Product</nb-option>
+            <nb-option value="2">Brand</nb-option>
+          </nb-select>
+        </nb-card-header>
+          <nb-card-body>
+            <ngx-echarts-pie-chart></ngx-echarts-pie-chart>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-front>
+      <nb-card-back>
+        <nb-card status="danger">
+          <nb-card-header>Sales
+            <nb-select size="small" class="float-right" placeholder="elect ShowcaseS" shape="round" [(selected)]="selectedItem">
+              <nb-option value="0">Branch</nb-option>
+              <nb-option value="1">Product</nb-option>
+              <nb-option value="2">Total Sales</nb-option>
+              <nb-option value="3">Brand</nb-option>
+              <nb-option value="4">All</nb-option>
+            </nb-select>
+          </nb-card-header>
+          <nb-card-body>
+            <ngx-echarts-pie-chart></ngx-echarts-pie-chart>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-back>
+    </nb-flip-card>

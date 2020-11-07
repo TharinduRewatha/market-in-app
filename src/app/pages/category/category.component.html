@@ -1,0 +1,107 @@
+
+<div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h5>Manage category</h5>
+        <button class="btn btn-info " (click)="open_(content1)" ><i class="fas fa-plus-circle"></i></button>
+       
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Category Name</th>
+              <th>Discription</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of categoryArray">
+              <td> {{item.categoryName}} </td>
+              <td> {{item.categoryDescription}} </td>
+              <td>
+                  <button (click)="setToUpdate(item.element);open_(content2)" class="btn btn-info">Update</button>
+              </td>
+              <td>
+                <button (click)="setToDelete(item.element)" class="btn btn-danger">Delete</button>
+            </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">
+       
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+  <ng-template #content1 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New Category</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label><strong>Category Name</strong></label>
+          <div class="input-group">
+            <input type="test" [(ngModel)]="categoryName" class="form-control"  required minlength="4" placeholder="Please enter" name="name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label><strong>Discription</strong></label>
+          <div class="input-group">
+            <textarea [(ngModel)]="categoryDescription" class="form-control" name="discription" placeholder="Please enter">
+            </textarea>
+          </div>
+        </div>
+        <hr>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-info" (click)="submitCategory('postNewcategory');modal.close('Save click')">Save</button>
+    </div>
+  </ng-template>
+
+
+  
+
+
+  <ng-template #content2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">category update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label><strong>Category Name</strong></label>
+          <div class="input-group">
+            <input type="test" [(ngModel)]="categoryName" class="form-control"  required minlength="4" placeholder="Please enter" name="name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label><strong>Discription</strong></label>
+          <div class="input-group">
+            <textarea [(ngModel)]="categoryDescription" class="form-control" name="discription" placeholder="Please enter">
+            </textarea>
+          </div>
+        </div>
+        <hr>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-info" (click)="submitCategory('putNewcategory');modal.close('Save click')">Save</button>
+    </div>
+  </ng-template> 
+
+  

@@ -1,0 +1,85 @@
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Manage products</h5>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>MerchantName</th>
+                        <th>ContactTitle</th>
+                        <th>Country </th>
+                        <th>Address </th>
+                        <th>Email </th>
+                        <th>PostalCode </th>
+                        <th>City </th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of merchantArray">
+                        <td> {{item.merchantName}} </td>
+                        <td> {{item.contactTitle}} </td>
+                        <td> {{item.country}} </td>
+                        <td> {{item.address}} </td>
+                        <td> {{item.email}} </td>
+                        <td> {{item.postalCode}} </td>
+                        <td> {{item.city}} </td>
+                        <td>
+                            <button (click)="setToUpdate(item.element);open_(content1)"
+                               class="btn btn-outline-info">Update</button>
+                        </td>
+                        <td>
+                            <button (click)="setToDelete(item.element)" class="btn btn-outline-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+        </div>
+    </div>
+</div>
+
+
+
+<!-- update  form -->
+<ng-template #content1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">New Product</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="col-sm-12">
+                <label><strong>Contact Title</strong></label>
+                <input type="text" [(ngModel)]="contactTitle" class="form-control" required 
+                    placeholder="Please enter" name="contactTitle_" #contactTitle_="ngModel">
+                <div *ngIf="contactTitle_.invalid && contactTitle_.touched" class="alert alert-danger" role="alert">
+                    Fill this field with correct data
+                </div>
+
+                <label><strong>MerchantName</strong></label>
+                <input type="text" [(ngModel)]="merchantName" class="form-control" required 
+                    placeholder="Please enter" name="merchantName_" #merchantName_="ngModel">
+                <div *ngIf="merchantName_.invalid && merchantName_.touched" class="alert alert-danger" role="alert">
+                    Fill this field with correct data
+                </div>
+
+            </div>
+            <hr>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info"
+            (click)="proceedToSubmit('post');modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+<!-- END update  form -->
+
+

@@ -1,0 +1,250 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <h5>Manage products</h5>
+      <button class="btn btn-info " (click)="openXl(content1)"><i class="fas fa-plus-circle"></i></button>
+       </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ProductName</th>
+            <th>Discription</th>
+            <th>Cost</th>
+            <th>Price</th>
+            <th>Actual Price</th>
+            <th>Discount</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of productArray">
+            <td> {{item.productName}} </td>
+            <td> {{item.description}} </td>
+            <td> {{item.cost | currency : 'LKR:'}} </td>
+            <td> {{item.price | currency : 'LKR:'}} </td>
+            <td> {{item.actualPrice | currency : 'LKR:'}} </td>
+            <td> {{item.disValue}} </td>
+            <td> 
+              <button (click)="setToUpdate(item.element);openXl(content2)" class="btn btn-outline-info">Update</button>
+            </td>
+            <td>
+              <button (click)="setToDelete(item.element)" class="btn btn-outline-danger">Delete</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- new product form -->
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New Product</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+
+      <div class="col-sm-12">
+
+        <div class="col-sm-6" style="float: left;">
+
+          <label><strong>Brand Name</strong></label>
+
+          <input type="text"  id="brandName_"  name="brandName_" [(ngModel)]="brandName"  #brandName_="ngModel" class="form-control"
+           placeholder="Please enter" required />
+         
+           <div *ngIf="brandName_.invalid && brandName_.touched" class="alert alert-danger" role="alert">
+            Fill this field with correct data
+          </div>
+
+          <label><strong>Category</strong></label>
+          <select type="text" [(ngModel)]="category" #name_="ngModel"  class="form-control" required placeholder="Please select"
+            name="name_">
+            <option value="">Select</option>
+            <option *ngFor="let item of categoryArray" value="{{item.categoryId}}">{{item.categoryName}}</option>
+          </select>
+          <div *ngIf="name_.invalid && name_.touched" class="alert alert-danger" role="alert">
+            Fill this field with correct data
+          </div>
+
+          <label><strong>ProductName</strong></label>
+          <input type="text" [(ngModel)]="productName" class="form-control" required minlength="3"
+            placeholder="Please enter" name="productName_" #productName_="ngModel">
+            <div *ngIf="productName_.invalid && productName_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Reorder Level</strong></label>
+          <input type="text" [(ngModel)]="reorderLevel" class="form-control" placeholder="Please enter"
+            name="reorderLevel">
+
+          <label><strong>Tag </strong></label>
+          <input type="text" [(ngModel)]="tag" class="form-control" placeholder="Please enter" name="tag">
+        </div>
+
+        <div class="col-sm-6" style="float: left;">
+
+          <label><strong>Cost</strong></label>
+          <input type="text" [(ngModel)]="cost"  class="form-control" required pattern="^[0-9]+$"
+            placeholder="Please enter" name="cost_" #cost_="ngModel">
+            <div *ngIf="cost_.invalid && cost_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Price</strong></label>
+          <input type="text" [(ngModel)]="price" class="form-control" required pattern="^[0-9]+$"
+            placeholder="Please enter" name="price_" #price_="ngModel">
+            <div *ngIf="price_.invalid && price_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Discount</strong></label>
+          <input type="text" [(ngModel)]="disValue" class="form-control" required pattern="^[0-9]+$"
+            placeholder="Please enter" name="disValue_" #disValue_="ngModel">
+            <div *ngIf="disValue_.invalid && disValue_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Actual Price</strong></label>
+          <input type="text" [(ngModel)]="actualPrice" class="form-control" required pattern="^[0-9]+$"
+            placeholder="Please enter" name="actualPrice_" #actualPrice_="ngModel">
+            <div *ngIf="actualPrice_.invalid && actualPrice_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Merchant</strong></label>
+          <select [(ngModel)]="merchant" class="form-control" required placeholder="Please select" name="Merchant">
+            <option *ngFor="let item of merchantArray" value="{{item.merchantId}}">{{item.merchantName}}</option>
+          </select>
+
+        </div>
+
+      </div>
+     <div class="col-sm-12" style="float: left;text-align: left;">
+         <label><strong>Discription</strong></label>
+       <textarea type="test" [(ngModel)]="description" class="form-control" 
+         placeholder="Please enter" name="name"></textarea>
+      </div> 
+      <hr>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-info"
+      (click)="proceedToSubmit('post');modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+<!-- END new product form -->
+
+
+<!-- update product form -->
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update Product</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+
+      <div class="col-sm-12">
+
+        <div class="col-sm-6" style="float: left;">
+
+          <label><strong>Brand Name</strong></label>
+
+          <input type="text"  id="brandName_"  name="brandName_" [(ngModel)]="brandName"  #brandName_="ngModel" class="form-control"
+           placeholder="Please enter" required />
+         
+           <div *ngIf="brandName_.invalid && brandName_.touched" class="alert alert-danger" role="alert">
+            Fill this field with correct data
+          </div>
+
+          <label><strong>Category</strong></label>
+          <select type="text" [(ngModel)]="category" #name_="ngModel"  class="form-control" required placeholder="Please select"
+            name="name_">
+            <option value="">Select</option>
+            <option *ngFor="let item of categoryArray" value="{{item.categoryId}}">{{item.categoryName}}</option>
+          </select>
+          <div *ngIf="name_.invalid && name_.touched" class="alert alert-danger" role="alert">
+            Fill this field with correct data
+          </div>
+
+          <label><strong>ProductName</strong></label>
+          <input type="text" [(ngModel)]="productName" class="form-control" required minlength="3"
+            placeholder="Please enter" name="productName_" #productName_="ngModel">
+            <div *ngIf="productName_.invalid && productName_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Reorder Level</strong></label>
+          <input type="text" [(ngModel)]="reorderLevel" class="form-control" placeholder="Please enter"
+            name="reorderLevel">
+
+          <label><strong>Tag </strong></label>
+          <input type="text" [(ngModel)]="tag" class="form-control" placeholder="Please enter" name="tag">
+        </div>
+
+        <div class="col-sm-6" style="float: left;">
+
+          <label><strong>Cost</strong></label>
+          <input type="text" [(ngModel)]="cost"  class="form-control" required pattern="^[0-9]+$"
+            placeholder="Please enter" name="cost_" #cost_="ngModel">
+            <div *ngIf="cost_.invalid && cost_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Price</strong></label>
+          <input type="text" [(ngModel)]="price" class="form-control" required pattern="^[0-9]+$"
+            placeholder="Please enter" name="price_" #price_="ngModel">
+            <div *ngIf="price_.invalid && price_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Discount</strong></label>
+          <input type="text" [(ngModel)]="disValue" class="form-control" required pattern="^[0-9]+$"
+            placeholder="Please enter" name="disValue_" #disValue_="ngModel">
+            <div *ngIf="disValue_.invalid && disValue_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Actual Price</strong></label>
+          <input type="text" [(ngModel)]="actualPrice" class="form-control" required pattern="^[0-9]+$"
+            placeholder="Please enter" name="actualPrice_" #actualPrice_="ngModel">
+            <div *ngIf="actualPrice_.invalid && actualPrice_.touched" class="alert alert-danger" role="alert">
+              Fill this field with correct data
+            </div>
+
+          <label><strong>Merchant</strong></label>
+          <select [(ngModel)]="merchant" class="form-control" required placeholder="Please select" name="Merchant">
+            <option *ngFor="let item of merchantArray" value="{{item.merchantId}}">{{item.merchantName}}</option>
+          </select>
+
+        </div>
+
+      </div>
+     <div class="col-sm-12" style="float: left;text-align: left;">
+         <label><strong>Discription</strong></label>
+       <textarea type="test" [(ngModel)]="description" class="form-control" 
+         placeholder="Please enter" name="name"></textarea>
+      </div> 
+      <hr>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-info"
+      (click)="proceedToSubmit('put');modal.close('Save click')">Save</button>
+  </div>
+</ng-template>

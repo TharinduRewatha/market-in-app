@@ -1,0 +1,21 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+
+  table.table {
+    font-family: nb-theme(font-family-primary);
+    color: nb-theme(text-basic-color);  /* This will change the color when you switch the theme */
+}
+}
+
+.inventory-color{
+  color: rgb(110, 110, 110) !important
+}
+
+
+.nb-theme-dark h1, .nb-theme-dark h2, .nb-theme-dark h3, .nb-theme-dark h4, .nb-theme-dark h5, .nb-theme-dark h6, .nb-theme-dark .h1, .nb-theme-dark .h2, .nb-theme-dark .h3, .nb-theme-dark .h4, .nb-theme-dark .h5, .nb-theme-dark .h6 {
+    color: black !important;
+  }

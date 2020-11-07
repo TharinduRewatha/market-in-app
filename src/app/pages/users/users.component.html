@@ -1,0 +1,161 @@
+<!-- 
+<div class="infinit-scroll">
+  <nb-card class="own-scroll nb-theme-dark">
+    <nb-card-header style="margin-bottom: 9px">
+     <div class="row">
+       <div class="col-lg-11 col-md-10 col-sm-9">        
+        <div class="form-check form-check-inline">
+          <header>Manage Users</header> 
+          <div class="ml-2">
+          </div>
+          <div class=" pl-5 form-check form-check-inline">
+           
+          </div>
+        </div>
+       </div>
+       <button class="btn add-icon-plus" (click)="AddNewUsers(content)"><i class="fas fa-plus-circle"></i></button>
+     </div>
+    </nb-card-header>
+      <section class="container-btn overflow-auto">
+        <div class="table-responsive">      
+      <table class="table table-striped text-center">
+        <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Name</th>            
+          <th scope="col">User Type</th>
+          <th scope="col">User Name</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of listOfUsers; let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <th scope="row">{{ user.name }}</th>
+          <th scope="row">{{ user.roles[0].name | slice:0:10 }}</th>
+          <th scope="row">{{ user.username }}</th>  
+          <th scope="row">
+            <button class="btn btn-sm btn-info" (click)="setupdateUserDetails(user.username); passwordChange(content2)"><i class="far fa-edit"></i></button>
+            <button class="btn btn-sm btn-danger" (click)="deleteUser(user.username)"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+           
+          </th>  
+                
+        </tr>
+        </tbody>
+      </table>
+        </div>
+    </section>
+</nb-card>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header nb-theme-dark">
+    <h4 class="modal-title" id="modal-basic-title">Add New User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #user = "ngForm" (ngSubmit) = "submitUser(user.value)">
+      <div class="form-check form-check-inline pb-3">
+        <label for="inputState"><strong>Username: </strong></label>
+        <div class="ml-2">             
+          <input type="text" #username="ngModel" [(ngModel)]="userName_" required ngModel name="username" class="form-control" id="inputAddUserName" placeholder="Enter User Name">
+          <div *ngIf="username.touched && !username.valid" class="alert alert-danger" role="alert">
+            Please fill this field correctly !
+          </div>
+       
+        </div>
+        </div>
+        <div class=" pl-5 form-check form-check-inline">
+          <label for="inputState"><strong>Password: </strong></label>
+          <div class="ml-2">
+            <input type="password" [(ngModel)]="password_" #password="ngModel" required ngModel name="userpassword" class="form-control" id="inputAddUserName" placeholder="Enter User Password">
+            <div *ngIf="password.touched && !password.valid" class="alert alert-danger" role="alert">
+              Please fill this field correctly !
+            </div>
+         
+          </div>
+        </div>
+        <div class=" pl-5 form-check form-check-inline">
+          <label for="inputState"><strong>Roles: </strong></label>
+          <div class="ml-2">
+            <select required #rolesName="ngModel" [(ngModel)]="userType_" name="rolesName" ngModel class="form-control">
+              <option value="admin"> admin</option>
+              <option value="user"> user</option>
+              <option value="override">override </option>
+            </select>
+            <div *ngIf="rolesName.touched && !rolesName.valid" class="alert alert-danger" role="alert">
+              Please fill this field correctly !
+            </div>
+          
+          
+          </div>
+        </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputAddCustomerName"><strong>Name:</strong></label>
+          <input type="text" #name="ngModel" [(ngModel)]="Name_" required ngModel name="name" class="form-control" id="inputAddUserName" placeholder="Enter User Name">
+          <div *ngIf="name.touched && !name.valid" class="alert alert-danger" role="alert">
+            Please fill this field correctly !
+          </div>
+       
+       
+        </div>
+      </div>
+      <button *ngIf="username.valid && password.valid && name.valid && rolesName.valid" type="submit" class="btn btn-warning text-center m-a" >Save</button>
+  </form>
+  </div>
+  <div class="modal-footer">
+  
+  </div>
+</ng-template>
+
+
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Change Password</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #passwordForm = "ngForm" (ngSubmit) = "changePassword()">
+      <div class="form-group">
+        <label for="newPassword"><strong>User name</strong></label>
+        <div class="input-group">
+          <input id="newPassword" class="form-control" name="username" [(ngModel)]="userName"  disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="newPassword"><strong>New Password:</strong></label>
+        <div class="input-group">
+          <input id="newPassword" required minlength="4" class="form-control" ngModel #newPassword1="ngModel" [(ngModel)]="newPassword"  placeholder="Please enter new password" name="newPassword1">
+          <div *ngIf="newPassword1.touched && !newPassword1.valid" class="alert alert-danger" role="alert">
+            Please fill this field correctly !
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><strong>Confirm Password:</strong></label>
+        <div class="input-group">
+          <input  class="form-control" ngModel #confirmPassword1="ngModel"  required minlength="4" [(ngModel)]="confirmPassword" placeholder="Please enter new password" name="confirmPassword1">
+          <div *ngIf="confirmPassword1.touched && !confirmPassword1.valid" class="alert alert-danger" role="alert">
+            Please fill this field correctly !
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div>
+      <div class="row" *ngIf="confirmPassword1.valid && newPassword1.valid">
+      
+      <button type="submit" class="btn btn-outline-dark" >Save</button>
+     
+    </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+----------END for password chnage of the users------------------ -->
