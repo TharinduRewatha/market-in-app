@@ -11,6 +11,7 @@
                         <th>Item Name</th>
                         <th>Quantity</th>
                         <th>Discount</th>
+                        <th>Price</th>
                         <th>Total</th>
                         <th>Add to cart</th>
                     </tr>
@@ -25,17 +26,24 @@
                             [resultFormatter]="formatter"
                             [editable]='false' />
                         </td>
+                      
                         <td>
-                            <input type="text" class="form-control" name="item" />
+                            <button (click)="setCartItemCount('increse')" class=" btn btm-sm btn-info">+</button>
+                            <strong> &nbsp; {{cartQuantity}} &nbsp;</strong>
+                            <button (click)="setCartItemCount('decrease')" class="btn btm-sm btn-success">-</button>
+
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="item" />
+                            <input type="number" [(ngModel)]="cartDiscount"  max="100" min="0" style="width:60px;height:40px;font-size: medium;" name="cartDiscount" />
                         </td>
                         <td>
-                           10
+                          <strong> {{cartItemPrice}} </strong> 
                         </td>
                         <td>
-                            <button class="btn btn-outline-info">Add</button>
+                            <strong> {{cartTotal}} </strong> 
+                          </td>
+                        <td>
+                            <button (click)="addTocart()" class="btn btn-outline-info">Add to cart</button>
                         </td>
                     </tr>
 

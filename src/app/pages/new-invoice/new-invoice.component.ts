@@ -27,9 +27,11 @@ export class NewInvoiceComponent implements OnInit {
   toolObj = new tools()
   apiAddress = ''
 
-  categoryId = ''
-  categoryName= ''
-  categoryDescription= ''
+  cartItemName = ''
+  cartQuantity= 1
+  cartDiscount= 0
+  cartTotal = 0
+  cartItemPrice = 0
   allProductsArray = []
 
   closeResult= ''
@@ -77,5 +79,21 @@ export class NewInvoiceComponent implements OnInit {
       );
   }
 
+  setCartItemCount(key){
+    if(key === 'increse'){
+      this.cartQuantity++
+    }
+    if(key === 'decrease'){
+      this.cartQuantity--
+    }
+  }
 
+
+  addTocart(){
+    if(this.model !== undefined ){
+      console.log(this.model)
+
+      
+    }
+  }
 }
