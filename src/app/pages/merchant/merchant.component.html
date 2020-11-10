@@ -1,10 +1,10 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5>Manage products</h5>
+            <h5>Manage Merchants</h5>
         </div>
         <div class="card-body">
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>MerchantName</th>
@@ -58,7 +58,7 @@
         <form>
             <div class="col-sm-12">
                 <label><strong>Contact Title</strong></label>
-                <input type="text" [(ngModel)]="contactTitle" class="form-control" required 
+                <input type="text"  [(ngModel)]="contactTitle" class="form-control" required 
                     placeholder="Please enter" name="contactTitle_" #contactTitle_="ngModel">
                 <div *ngIf="contactTitle_.invalid && contactTitle_.touched" class="alert alert-danger" role="alert">
                     Fill this field with correct data
@@ -76,7 +76,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-info"
+        <button *ngIf="merchantName_.valid && contactTitle_.valid" type="button" class="btn btn-outline-info"
             (click)="proceedToSubmit('post');modal.close('Save click')">Save</button>
     </div>
 </ng-template>

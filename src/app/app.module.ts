@@ -18,11 +18,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TagInputModule } from 'ngx-chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StartPageComponent } from './start-page/start-page.component';
+import { ViewInvoiceComponent } from './view-invoice/view-invoice.component';
 
 
 @NgModule({
   
-  declarations: [AppComponent, StartPageComponent ],
+  declarations: [AppComponent, StartPageComponent, ViewInvoiceComponent ],
   imports: [
     NgxBarcode6Module,
     TagInputModule,

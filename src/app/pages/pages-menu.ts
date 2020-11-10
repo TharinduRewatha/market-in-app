@@ -34,16 +34,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'file-text-outline',
     link: '/pages/newinvoice',
   },
-   {
-    title: 'Purchase Report',
-   icon: 'file-text-outline',
-    link: '/pages/purchases',
-  },
-  {
-    title: 'Statistics Reports',
-    icon: 'file-text-outline',
-    link: '/pages/statistics',
-  },
+  //  {
+  //   title: 'Purchase Report',
+  //  icon: 'file-text-outline',
+  //   link: '/pages/purchases',
+  // },
+  // {
+  //   title: 'Statistics Reports',
+  //   icon: 'file-text-outline',
+  //   link: '/pages/statistics',
+  // },
   // {
   //   title: 'UPDATE & SETTINGS',
   //   group: true,

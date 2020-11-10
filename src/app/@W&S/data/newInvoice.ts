@@ -1,4 +1,4 @@
-export class invoice {
+export class newinvoice {
   dateTime : Date;
   username: String;
   payMethod :string[];// ["CASH", "VISA", "MASTER_CARD", "AMEX", "ONLINE"],
@@ -6,6 +6,6 @@ export class invoice {
   totalValue : Number;
   customer : String;
   totalItems : Number;
-  purchase : string[];
+  purchase : any[];
   merchant : String ;
 }

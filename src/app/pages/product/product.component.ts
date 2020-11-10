@@ -171,17 +171,16 @@ async  getData(apiAddress) {
 
   proceedToSubmit(key) {
     let dataObject = new products()
-    dataObject.brandName = this.brandName
     dataObject.category = this.category
     dataObject.productName = this.productName
     dataObject.description = this.description
     dataObject.tag = this.tag
     dataObject.cost = Number(this.cost)
     dataObject.price = Number(this.price)
-    dataObject.disValue = Number(this.disValue)
-    dataObject.actualPrice = Number(this.actualPrice)
+    
+   
     dataObject.merchant = this.merchant
-    dataObject.reorderLevel = this.reorderLevel
+    dataObject.reorderLevel = Number(this.reorderLevel)
 
     if (key === 'post') {
       this.postNewData(dataObject)

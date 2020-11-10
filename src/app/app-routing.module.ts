@@ -11,12 +11,17 @@ import {
 import { AppModule } from './app.module';
 
 import {StartPageComponent} from './start-page/start-page.component';
+import {ViewInvoiceComponent} from './view-invoice/view-invoice.component';
 export const routes: Routes = [
   
 
   {
     path: 'login',
     component: StartPageComponent,
+  },
+  {
+    path: 'viewinvoice',
+    component: ViewInvoiceComponent,
   },
   {
     path: 'pages',

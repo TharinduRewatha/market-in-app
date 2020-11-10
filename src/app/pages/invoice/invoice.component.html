@@ -2,10 +2,7 @@
 <div class="col-sm-12">
     <div class="card">
       <div class="card-header">
-        <h5>Manage category</h5>
-        <button class="btn btn-info " ><i class="fas fa-plus-circle"></i></button>
-       
-        
+        <h5>Manage invoice</h5>        
       </div>
       <div class="card-body">
         <table class="table">
@@ -16,7 +13,7 @@
               <th>Customer</th>
               <th>Total items</th>
               <th>Total</th>
-              <th>View</th>
+             
               <th>Delete</th>
             </tr>
           </thead>
@@ -27,9 +24,6 @@
               <td> {{item.customer}} </td>
               <td> {{item.totalItems}} </td>
               <td> {{item.totalValue}} </td>
-              <td>
-                  <button (click)="setToUpdate(item.element);open_(content2)" class="btn btn-info">Open</button>
-              </td>
               <td>
                 <button (click)="setToDelete(item.element)" class="btn btn-danger">Delete</button>
             </td>

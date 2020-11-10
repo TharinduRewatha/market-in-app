@@ -1,0 +1,101 @@
+<div  class="container-fluid mt-100 mb-100">
+    <div id="ui-view">
+        <div id="divName" class="pt-0">
+            <div class="row mb-1 justify-content-between">
+                <div class="col-sm-4">
+                    <div class="float-left"> Invoice : <strong>{{invoiceId}}</strong></div>
+
+                </div>
+                <div class="text-center pt-0 pr-4">
+                    <h3><strong>Example Pvt Ltd</strong></h3>
+                    <div class="golblFontSize">No:55 alfred house avenue Cololmo</div>
+                    <div class="golblFontSize">0112345678</div>
+               
+
+                </div>
+                <div class="col-sm-4 text-right float-right">
+                    <div>Date: {{date_ | date:  'yyyy-MM-dd'}} | Time: {{date_ | date:'h:mm a'}} </div>
+                    <div class="float-lg-right pt-2"> 
+                        <a routerLink="/pages/newinvoice" class="btn btn-sm btn-info ml-2" id="btnHome"  data-abc="true"><i class="fa fa-file-text-o mr-1"></i> Home</a> &nbsp;
+                   
+                    
+                </div>
+                </div>
+            </div>
+
+            
+            <div class="card pt-0">
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div ><strong>Customer Details: </strong><span> {{PaycustomerName}} </span></div>
+                            <div>Phone:{{PaycustomerContact}} </div>
+                            <div >Address: {{PaycustomerAddress}} </div>
+                        </div>
+                      
+                        <div class="col-sm-3 float-right">
+                            <div>User: user</div>                       
+                            <div>Payment method: {{Paypaymythod}}</div>                       
+                        </div>
+                    </div>
+                    <div class="table-responsive-sm">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="right">#</th>
+                                    <th class="center">Item Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              
+                                <tr *ngFor="let item of invoiceDatArray;let i = index">
+                                  <td> {{i}} </td>
+                                  <td> {{item.productName}} </td>
+                                  <td> {{item.quntity}} </td>
+                                  <td> {{item.price  | currency  : 'LKR. '}} </td>
+                                  <td> {{item.total  | currency  : 'LKR. '}} </td>
+                               
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-5 pt-3 text-center"></div>
+                        <div class="text-center pt-5 ">
+                            <span class="flot-center detail-box">
+                                <div><strong>Thank You.. Come Again</strong></div>
+                                <div>will not be refunded</div>
+                                <div>7 days exchange period</div> 
+                            </span>
+
+                        </div>
+                        <div class="col-lg-4 col-sm-5 ml-auto pt-0">
+                            <table class="table table-clear pt-0">
+                                <tbody class="pt-0 pb-0">
+                                   
+                                    <tr class="pt-0">
+                                        <td class="left pt-0 mb-0"><strong>Items</strong></td>
+                                        <td class="right pt-0 mb-0"> {{totalItems}}</td>
+                                    </tr>
+                                    
+                                    <tr class="pt-0">
+                                        <td class="left pt-0 mb-0"><strong>Total</strong></td>
+                                        <td class="right pt-0 mb-0"> {{ total | currency  : 'LKR. '}} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-center" id="btnDiv">
+                                <a   (click)="postInvoice()" class="btn btn-lg text-light btn-success"  data-abc="true">Proceed to payment</a> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">Powered By <strong>Webstazy One.</strong> Tel : 011 2 186 555</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
